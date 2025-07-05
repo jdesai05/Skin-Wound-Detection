@@ -1,7 +1,7 @@
 # crud.py
 from users.models import UserDB
 from users.schemas import UserCreate,UserLogin
-from utils.hashing import *
+from utils.auth import *
 from fastapi.exceptions import HTTPException
 from database import SessionLocal
 
@@ -10,15 +10,15 @@ class UserService:
         self.db = SessionLocal()
 
     def create_user(self, user: UserCreate):
-        db_user = UserDB(name=user.name, email=user.email,password=user.password)
+        db_user = UserDB(name=user.name, email=user.email,password=user.password,is_admin=user.is_admin)
         self.db.add(db_user)
         self.db.commit()
         self.db.refresh(db_user)
-        return self_hmac_hash(db_user.email,db_user.password)
+        return create_access_token(db_user.to_dict())
     
-    def does_user_exist(self,email:str,hash:str):
+    def does_user_exist(self,email:str):
         existing_user = self.db.query(UserDB).filter(UserDB.email == email).first()
-        return verify_self_hmac(existing_user.email,hash,existing_user.password)
+        return existing_user is not None
 
     # only for development and testing purpose
     def get_all_users(self):
@@ -27,16 +27,23 @@ class UserService:
     def login(self,request:UserLogin):
         existing_user = self.db.query(UserDB).filter(UserDB.email == request.email, UserDB.password == request.password).first()
         if existing_user is not None:
-            return self_hmac_hash(existing_user.email,existing_user.password)
+            return create_access_token(existing_user.to_dict())
         
     # only for development and testing purpose
     def delete_all(self):
         return self.db.query(UserDB).delete()
     
-    def delete_user(self,email,hash):
-        if self.does_user_exist(email,hash):
-            return self.db.query(UserDB).filter(UserDB.email == email).delete()
+    def delete_user(self,token):
+
+        try:
+            data = decode_access_token(token)
+            email = data['email']
+
+            return self.db.query(UserDB).filter(
+                UserDB.email == email
+            ).delete()
         
-        return HTTPException(401)
+        except:
+            return HTTPException(401)
     
 user_service = UserService()

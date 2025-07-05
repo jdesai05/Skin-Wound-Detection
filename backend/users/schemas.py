@@ -5,6 +5,7 @@ class UserCreate(BaseModel):
     name: str
     email: str
     password:str
+    is_admin:bool
 
 class UserLogin(BaseModel):
     email:str
@@ -12,4 +13,3 @@ class UserLogin(BaseModel):
 
 class DeleteRequest(BaseModel):
     email: str
-    hash: str
