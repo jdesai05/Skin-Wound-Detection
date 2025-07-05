@@ -27,6 +27,6 @@ async def delete_all_users():
 
 @router.delete('/',dependencies=[Depends(is_user)])
 async def delete_user(
-    token:str
+    payload:str = Depends(is_user)
 ):
-    return user_service.delete_user(token)
+    return user_service.delete_user(payload['email'])

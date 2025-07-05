@@ -28,21 +28,19 @@ class UserService:
         existing_user = self.db.query(UserDB).filter(UserDB.email == request.email, UserDB.password == request.password).first()
         if existing_user is not None:
             return create_access_token(existing_user.to_dict())
+        else:
+            raise HTTPException(404)
         
     # only for development and testing purpose
     def delete_all(self):
         return self.db.query(UserDB).delete()
     
-    def delete_user(self,token):
-
+    def delete_user(self,email):
         try:
-            data = decode_access_token(token)
-            email = data['email']
 
             return self.db.query(UserDB).filter(
                 UserDB.email == email
             ).delete()
-        
         except:
             return HTTPException(401)
     

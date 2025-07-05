@@ -16,7 +16,7 @@ app.include_router(user_router,prefix='/users',tags=['Users'])
 app.include_router(diagnosis_router,prefix='/engine',tags=['Diagnosis Engine'])
 
 ## Uncomment the line below if wanting to refresh the db
-Base.metadata.drop_all(bind=engine)
+#Base.metadata.drop_all(bind=engine)
 
 Base.metadata.create_all(bind=engine)
 
