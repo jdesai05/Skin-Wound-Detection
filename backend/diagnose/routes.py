@@ -15,6 +15,15 @@ client = genai.Client(api_key=genai_api_key)
 
 router = APIRouter()
 
+diagnosis_response_pattern = '''
+    {
+        condition: '...' (blank if no condition is identified),
+        first_aid: '...',
+        remedy: '...' (if any),
+        disclaimer: '...' (about how one shall trust a doctor more than AI),
+    }
+'''
+
 
 async def get_prediction(image_bytes: bytes) -> dict:
     try:
@@ -26,7 +35,7 @@ async def get_prediction(image_bytes: bytes) -> dict:
                 data=image_bytes,
                 mime_type='image/jpeg',
             ),
-            'Diagnose this image for a skin disease or wound'
+            f'Diagnose this image for a skin disease or wound in this json pattern {diagnosis_response_pattern}'
             ]
         )
         
