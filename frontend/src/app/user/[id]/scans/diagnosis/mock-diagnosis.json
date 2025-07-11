@@ -1,0 +1,171 @@
+{
+  "diagnosis": {
+    "id": "diag_001",
+    "timestamp": "2025-07-11T10:30:00Z",
+    "status": "completed",
+    "confidence": 92,
+    "condition": {
+      "name": "Mild Eczema",
+      "category": "dermatitis",
+      "severity": "mild",
+      "description": "Based on your scan, the AI detected mild eczema. This is a common skin condition that causes itchy, red, and dry skin."
+    },
+    "image": {
+      "original_url": null,
+      "processed_url": null,
+      "analysis_regions": [
+        {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 80,
+          "confidence": 0.92
+        }
+      ]
+    },
+    "treatments": {
+      "over_the_counter": [
+        {
+          "id": "otc_001",
+          "name": "Eczema Cream",
+          "description": "Relieves itching",
+          "category": "topical_cream",
+          "active_ingredient": "Hydrocortisone 1%",
+          "usage": "Apply thin layer 2-3 times daily",
+          "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuARYtfu27uf6ENHdGRc6hh52rIIx0h5FZMR5ip_ItYyTMhKfg4BANnnTfxpgGI2fO4G4PV0dvSfwbTZjlfBECReHoxX0nvn-AYmfoWGqJlAwKtkQv-46IsDuMyLVI1iDXd8YCjGhFdR3p_0gPuEaYDvWKXtt8UWvq9rorNPFiPZMxt6oIJbIMnZ_nLoNuXWPQN_PsT8QfPA84Fu1OuUfBxERRYve-HaYk8aXjvabV5sxM_F33tzCg7ScQu1CQsbTnMmt_pZJNT-ZQ",
+          "price_range": "$8-15",
+          "availability": "pharmacy"
+        },
+        {
+          "id": "otc_002",
+          "name": "Hydrocortisone",
+          "description": "Reduces swelling",
+          "category": "anti_inflammatory",
+          "active_ingredient": "Hydrocortisone 0.5%",
+          "usage": "Apply to affected area twice daily",
+          "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBhz0AxYUrhEx9v2jCXMR0ihzVsrsYBKYm1R6cynk3LkH_ydlDYW3ce14v-WuPV9Vnkm1ktr_PqmSRtqhljGtVlHdiZ0OLc5lGeGmIKFubAQwOag2jGNGENQDNBmyjSmPTRaqEg2xkGMh5ShYX9ULcxjs01hKDsIM2gsJgoaxaPRlZn9sh9N8SwdfkX-QCmGR8kxrtbVLznCF5hH7SuRzO0vHRsaWilsS2oFTP57A38TbhhgGvvYPCorPoLo_TV7Ti-jRUSAavilA",
+          "price_range": "$5-12",
+          "availability": "pharmacy"
+        },
+        {
+          "id": "otc_003",
+          "name": "Moisturizer",
+          "description": "Keeps skin hydrated",
+          "category": "moisturizer",
+          "active_ingredient": "Ceramides, Hyaluronic Acid",
+          "usage": "Apply liberally after bathing",
+          "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcsL0WrsDTSV3Z6HrxQUK1v7e-rK-1eb_BCyYNJebZF1eJkSOaEhbuoUpJlyD-lwKe_pBEWwR7QDdDrca4ztrDTKH_g_jCsdyxmXkTRAcUFdpuqXuZt_oIZ3cM2N7tFtLjjBvNkuQ_HOUGWw1_mKwrc4sxHirFg0alZB2PPx1FP1dIByfFeG_PxYV6EbVcL8hiDYCSDMQ0MtH3BoEhN5DMsVx40DzyhDAeETZTSu0XEtNvcCBKJo_VWV-xpL3Fh5ALdHBYGS4nqw",
+          "price_range": "$10-25",
+          "availability": "pharmacy"
+        }
+      ],
+      "home_remedies": [
+        {
+          "id": "home_001",
+          "title": "Cold Compress",
+          "description": "Apply for 15-20 mins to reduce itching.",
+          "icon": "cold-compress",
+          "instructions": [
+            "Wrap ice cubes in a clean cloth",
+            "Apply to affected area for 15-20 minutes",
+            "Repeat 2-3 times daily as needed"
+          ],
+          "effectiveness": "high",
+          "safety_level": "safe"
+        },
+        {
+          "id": "home_002",
+          "title": "Lukewarm Baths",
+          "description": "Use mild, fragrance-free soap.",
+          "icon": "bath",
+          "instructions": [
+            "Use lukewarm (not hot) water",
+            "Limit bath time to 10-15 minutes",
+            "Use mild, fragrance-free soap",
+            "Pat skin dry, don't rub"
+          ],
+          "effectiveness": "medium",
+          "safety_level": "safe"
+        },
+        {
+          "id": "home_003",
+          "title": "Moisturize",
+          "description": "Apply a thick layer after bathing.",
+          "icon": "moisturize",
+          "instructions": [
+            "Apply moisturizer within 3 minutes of bathing",
+            "Use a thick, fragrance-free moisturizer",
+            "Apply in gentle, upward strokes",
+            "Reapply throughout the day as needed"
+          ],
+          "effectiveness": "high",
+          "safety_level": "safe"
+        }
+      ],
+      "lifestyle_changes": [
+        {
+          "category": "clothing",
+          "recommendation": "Wear loose, breathable cotton clothing",
+          "importance": "medium"
+        },
+        {
+          "category": "environment",
+          "recommendation": "Use a humidifier to maintain skin moisture",
+          "importance": "medium"
+        },
+        {
+          "category": "diet",
+          "recommendation": "Avoid known food triggers if identified",
+          "importance": "low"
+        }
+      ]
+    },
+    "warning_signs": {
+      "seek_immediate_care": [
+        {
+          "symptom": "Signs of infection (pus, crusting, or fever)",
+          "urgency": "immediate",
+          "description": "Bacterial infection requires antibiotic treatment"
+        }
+      ],
+      "seek_medical_consultation": [
+        {
+          "symptom": "Symptoms worsen or do not improve after a week",
+          "urgency": "within_week",
+          "description": "May require prescription medication or further evaluation"
+        },
+        {
+          "symptom": "Eczema covers a large area of the body",
+          "urgency": "within_few_days",
+          "description": "Extensive eczema may require systemic treatment"
+        }
+      ]
+    },
+    "follow_up": {
+      "recommended_timeline": "2_weeks",
+      "monitoring_instructions": [
+        "Track symptom improvement daily",
+        "Note any new symptoms or worsening",
+        "Take photos to monitor progress"
+      ],
+      "next_steps": [
+        {
+          "condition": "if_no_improvement",
+          "action": "consult_dermatologist",
+          "timeline": "1_week"
+        },
+        {
+          "condition": "if_worsening",
+          "action": "seek_immediate_care",
+          "timeline": "immediate"
+        }
+      ]
+    },
+    "ai_model": {
+      "version": "skin-analyzer-v2.1",
+      "trained_on": "dermatology_dataset_2024",
+      "accuracy_rate": 0.89,
+      "last_updated": "2024-12-15"
+    }
+  }
+}
