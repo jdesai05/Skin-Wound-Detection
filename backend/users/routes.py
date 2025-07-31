@@ -5,7 +5,7 @@ from fastapi import APIRouter,Depends
 import logging
 from utils.auth import is_user,is_admin
 
-router = APIRouter()
+router = APIRouter(prefix='/users')
 logger = logging.getLogger(__name__)
 
 @router.post('/signup')

@@ -10,12 +10,15 @@ class UserService:
         self.db = SessionLocal()
 
     def create_user(self, user: UserCreate):
-        db_user = UserDB(name=user.name, email=user.email,password=user.password,is_admin=user.is_admin)
-        self.db.add(db_user)
-        self.db.commit()
-        self.db.refresh(db_user)
-        return create_access_token(db_user.to_dict())
-    
+        try:
+            db_user = UserDB(name=user.name, email=user.email,password=user.password,is_admin=user.is_admin)
+            self.db.add(db_user)
+            self.db.commit()
+            self.db.refresh(db_user)
+            return create_access_token(db_user.to_dict())
+        except Exception as e:
+            return HTTPException(409)
+        
     def does_user_exist(self,email:str):
         existing_user = self.db.query(UserDB).filter(UserDB.email == email).first()
         return existing_user is not None

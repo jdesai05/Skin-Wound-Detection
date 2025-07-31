@@ -14,7 +14,7 @@ load_dotenv()
 genai_api_key = os.environ.get('GOOGLE_API_KEY')
 client = genai.Client(api_key=genai_api_key)
 
-router = APIRouter()
+router = APIRouter(prefix='/engine')
 
 # The desired pattern for the diagnosis response
 # This is now primarily for documentation/understanding, as the schema will enforce the structure.

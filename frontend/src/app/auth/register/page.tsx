@@ -1,8 +1,33 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
+import { SignUpRequest, signup } from '@/apis/auth'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterPage() {
+  const router = useRouter()
+  const [name, setName] = useState<string | null>(null)
+  const [email, setEmail] = useState<string | null>(null)
+  const [password, setPassword] = useState<string | null>(null)
+
+  const handleSignUp = async () => {
+    try {
+      const req: SignUpRequest = {
+        name: name!,
+        email: email!,
+        password: password!,
+      }
+
+      const res = await signup(req)
+      if(res.name){
+        router.push('/user') // Redirect to login after successful signup
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className="bg-white text-[#111418] min-h-screen" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <div className="container mx-auto px-6 py-8 flex flex-col min-h-screen">
@@ -15,10 +40,11 @@ export default function RegisterPage() {
         </header>
         <main className="flex-grow">
           <h1 className="text-3xl font-bold text-center mb-8">Create Your SkinAid Account</h1>
-          <form action="#" className="space-y-6" method="POST">
+          <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleSignUp(); }}>
             <div>
               <label className="sr-only" htmlFor="full-name">Full Name</label>
               <input 
+                onChange={(e) => { setName(e.target.value) }}
                 className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
                 id="full-name" 
                 name="full-name" 
@@ -30,6 +56,7 @@ export default function RegisterPage() {
             <div>
               <label className="sr-only" htmlFor="email">Email</label>
               <input 
+                onChange={(e) => { setEmail(e.target.value) }}
                 className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
                 id="email" 
                 name="email" 
@@ -41,6 +68,7 @@ export default function RegisterPage() {
             <div>
               <label className="sr-only" htmlFor="password">Password</label>
               <input 
+                onChange={(e) => { setPassword(e.target.value) }}
                 className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
                 id="password" 
                 name="password" 
@@ -76,7 +104,7 @@ export default function RegisterPage() {
               <img 
                 alt="Apple logo" 
                 className="h-6 w-6 mr-3" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAVq6a5m1jjoDzEFbugprnYPciqLwQgr-zS4N2VluUqGNciBXsEh8P4pRLNGhiFZffEQeYVnBB_tIflnquL8AVTOXCEZsyAHb7QvIg1n_LjDj2qYpSbklL-po5LCf25cJ5_u__LYEmLn0ZUW5C2Eh94vusDd5WayT9qIbKn03qTy_IPbGQR5u8GzIxTH5jV-mjgLmYNI-LaW7SSZDUgMSBTSEbOJu-MMH8kK8aA2pOAc9-uQbwecS21AFJx8ltXQioWXL93A_AFA"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAVq6a5m1jjoDzEFbugprnYPciqLwQgr-zS4N2VluUqGNciBXsEh8P4pRLNGhiFZffEQeYVnBB_tIflnquL8AVTOXCEZsyAHb7QvIg1n_LjDj2qYpSbklL-po5LCf25cJ5_u__LYEmLn0ZUW5C2Eh94vusDd5WayT9qIbKn03qTy_IPbGQR5u8GzRBU69-idI74VU_7PuQMyiihJ5lmQFE1c-I-eBQwFuK0GMSBjOUQjkad98mi5cf63HSPSmVhxYwMBt_ErNq9jBOo8b569TOKTrbK3tiSD2eImN4fCI3UwRA"
               />
               Sign Up with Apple
             </button>

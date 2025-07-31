@@ -1,23 +1,32 @@
 'use client'
 
+import { login, LoginRequest } from '@/apis/auth'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { v4 as uuidv4 } from 'uuid'
+import { useState } from 'react'
 
 export default function LoginPage() {
   const router = useRouter()
+  const [email,setEmail]=useState<string|null>(null)
+  const [password,setPassword]=useState<string | null>(null)
 
-  const mockLogin = () => {
-    const email = 'mock@gmail.com'
-    const password = 'password'
-    const userId = uuidv4()
 
-    console.log(`Email: ${email}, Password: ${password}`)
+  const handleLogin = async() => {
+    try{
+      const req:LoginRequest = {
+        email:email!,
+        password:password!
+      }
 
-    // Redirect to user page
-    router.push(`/user/${userId}`)
+      await login(req)
+
+      router.push('/user') // Redirect to user dashboard after successful login
+    }
+    catch(error){
+      console.error(error)
+      alert(error)
+    }
   }
-
   return (
     <div
       className="relative flex size-full min-h-screen flex-col bg-[#F9FAFB] group/design-root overflow-x-hidden"
@@ -39,6 +48,8 @@ export default function LoginPage() {
                 email
               </span>
               <input
+                name='email'
+                onChange={(e)=>{setEmail(e.target.value)}}
                 className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
                 placeholder="Email"
                 type="email"
@@ -49,16 +60,18 @@ export default function LoginPage() {
                 lock
               </span>
               <input
+                onChange={(e)=>{setPassword(e.target.value)}}
                 className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
                 placeholder="Password"
                 type="password"
+                name='password'
               />
             </div>
           </div>
           <div className="mt-6">
             <button
               className="flex w-full cursor-pointer items-center justify-center rounded-full h-14 px-5 bg-[#3b82f6] text-white text-lg font-bold leading-normal tracking-wide hover:opacity-90 transition-opacity"
-              onClick={mockLogin}
+              onClick={handleLogin}
             >
               <span className="truncate">Login</span>
             </button>
@@ -92,7 +105,7 @@ export default function LoginPage() {
           </div>
           <div className="text-center mt-6">
             <p className="text-[#6b7280] text-sm">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link className="font-bold text-[#3b82f6] hover:underline" href="/auth/register">
                 Sign up
               </Link>

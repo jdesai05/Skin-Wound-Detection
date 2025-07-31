@@ -12,8 +12,8 @@ app = FastAPI()
 def read_root():
     return {"message": "Welcome to FastAPI with PostgreSQL"}
 
-app.include_router(user_router,prefix='/users',tags=['Users'])
-app.include_router(diagnosis_router,prefix='/engine',tags=['Diagnosis Engine'])
+app.include_router(user_router,tags=['Users'])
+app.include_router(diagnosis_router,tags=['Diagnosis Engine'])
 
 ## Uncomment the line below if wanting to refresh the db
 #Base.metadata.drop_all(bind=engine)

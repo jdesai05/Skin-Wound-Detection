@@ -1,13 +1,16 @@
 'use client'
 
+import { apiclient } from '@/apis/client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function UserLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const id = pathname.split('/')[2]
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false)
+  const user = apiclient.getTokenPayload();
   
   // Check if current page is scans page
   const isScansPage = pathname.includes('/scans')
@@ -17,7 +20,8 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
   }
 
   const handleLogout = () => {
-    //need to add logout logic here
+    apiclient.clearToken()
+    router.replace('/')
   }
 
   const handlePrivacyPolicy = () => {
@@ -72,8 +76,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
         
        
         <div className="mt-4">
-            {/* Please make this to dynamic name, using the user/{id} logic. Suramoya */}
-          <h2 className="text-[var(--text-primary)] text-xl font-bold leading-tight">Hi, Amelia</h2>
+          <h2 className="text-[var(--text-primary)] text-xl font-bold leading-tight">Hi, {user?.name}</h2>
           <p className="text-[var(--text-secondary)] text-sm mt-1">How can we help today?</p>
         </div>
       </header>
@@ -87,8 +90,8 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
       <footer className="fixed bottom-0 left-0 right-0 z-10">
         <div className="flex gap-2 border-t border-[var(--secondary-color)] bg-white/80 backdrop-blur-sm px-4 pb-3 pt-2">
           <Link 
-            href={`/user/${id}`} 
-            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user/${id}` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
+            href={`/user`} 
+            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
           >
             <div className="flex h-8 items-center justify-center">
               <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
@@ -99,8 +102,8 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
           </Link>
           
           <Link 
-            href={`/user/${id}/scans`} 
-            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user/${id}/scans` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
+            href={`/user/scans`} 
+            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user/scans` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
           >
             <div className="flex h-8 items-center justify-center">
               <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
@@ -111,8 +114,8 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
           </Link>
           
           <Link 
-            href={`/user/${id}/profile`} 
-            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user/${id}/profile` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
+            href={`/user/profile`} 
+            className={`flex flex-1 flex-col items-center justify-end gap-1 ${pathname === `/user/profile` ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)] hover:text-[var(--primary-color)]'}`}
           >
             <div className="flex h-8 items-center justify-center">
               <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
