@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { login, LoginRequest } from '@/apis/auth'
@@ -9,6 +10,7 @@ export default function LoginPage() {
   const router = useRouter()
   const [email,setEmail]=useState<string|null>(null)
   const [password,setPassword]=useState<string | null>(null)
+  const [passwordBoxType,setPasswordBoxType]=useState<string>('password')
 
 
   const handleLogin = async() => {
@@ -67,9 +69,23 @@ export default function LoginPage() {
                 onChange={(e)=>{setPassword(e.target.value)}}
                 className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
                 placeholder="Password"
-                type="password"
+                type={passwordBoxType}
                 name='password'
               />
+              <button
+                onClick={()=>{
+                  if(passwordBoxType==='password'){
+                    setPasswordBoxType('text')
+                  }
+                  else{
+                    setPasswordBoxType('password')
+                  }
+                }}
+                className="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                  {
+                    passwordBoxType === 'text'? 'visibility' : 'visibility_off'
+                  }
+              </button>
             </div>
           </div>
           <div className="mt-6">

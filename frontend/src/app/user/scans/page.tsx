@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { uploadImageForDiagnosis } from '@/apis/diagnosis'
 
 interface ExtendedMediaTrackCapabilities extends MediaTrackCapabilities {
   torch?: boolean
@@ -158,7 +161,7 @@ export default function ScansPage() {
       
       console.log('✅ Video element found')
       
-      let constraints: MediaStreamConstraints = {
+      const constraints: MediaStreamConstraints = {
         video: {
           facingMode: currentCamera //it uses the default camera in any device (mobile - back camera, desktop - webcam)
         }
@@ -185,7 +188,7 @@ export default function ScansPage() {
           }
         }
         
-        const onError = (error: any) => {
+        const onError = (error: DOMException | Error | unknown ) => {
           reject(error)
         }
         
@@ -254,14 +257,24 @@ export default function ScansPage() {
     if (!capturedImage) return
 
     setIsAnalyzing(true)
-    
-    setTimeout(() => {
-      setIsAnalyzing(false)
+    try {
+      // Convert base64 image to Blob, then to File
+      const response = await fetch(capturedImage);
+      const blob = await response.blob();
+      const imageFile = new File([blob], "scan_image.jpeg", { type: "image/jpeg" });
+
+      const diagnosisResult = await uploadImageForDiagnosis(imageFile);
       
-      // Update this logic as required for you - Suramya
-      localStorage.setItem('scanImage', capturedImage)
-      router.push('./scans/diagnosis')
-    }, 3000)
+      localStorage.setItem('diagnosisResult', JSON.stringify(diagnosisResult.diagnosis));
+      localStorage.setItem('scanImage', capturedImage); // Keep the image for display
+      router.push('./scans/diagnosis');
+
+    } catch (error) {
+      console.error('Error analyzing image:', error);
+      alert(`Analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsAnalyzing(false);
+    }
   }
 
   const retakePhoto = () => {

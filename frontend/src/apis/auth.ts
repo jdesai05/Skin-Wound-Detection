@@ -12,6 +12,33 @@ export interface SignUpRequest{
     password:string;
 }
 
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    is_admin: boolean;
+}
+
+export interface UserListResponse {
+    users: User[];
+}
+
+export const getAllUsers = async(): Promise<User[]> => {
+    const res = await apiclient.get('/api/users/all');
+    if (!res.ok) {
+        throw new Error('Unable to fetch users');
+    }
+    return res;
+}
+
+export const deleteAllUsers = async(): Promise<void> => {
+    const res = await apiclient.delete('/api/users/all');
+    if (!res.ok) {
+        throw new Error('Unable to delete all users');
+    }
+    return;
+}
+
 export const login = async(request:LoginRequest):Promise<Token> => {
     const res = await fetch('/api/users/login',{
         method:'POST',
@@ -28,6 +55,8 @@ export const login = async(request:LoginRequest):Promise<Token> => {
         switch(res.status){
             case 404:
                 throw new Error('You don\'t have an account!')
+            case 401:
+                throw new Error('Invalid Credentials')
             default:
                 throw new Error('Unable to Login')
         }
@@ -53,7 +82,12 @@ export const signup = async(request:SignUpRequest):Promise<Token> => {
     });
 
     if(!res.ok){
-        throw new Error('Unable to Register')
+        switch(res.status){
+            case 409:
+                throw new Error('You already have an account!')
+            default:
+                throw new Error('Unable to Register')
+        }
     }
 
     const data = await res.json();
