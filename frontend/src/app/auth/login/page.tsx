@@ -36,10 +36,14 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           <div className="flex flex-col items-center mb-8">
             <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-100 mb-4">
-              <span className="material-icons text-4xl text-[#3b82f6]">health_and_safety</span>
+              <img 
+                src="/SkinnAidLogo.png" 
+                alt="SkinnAid Logo" 
+                className="w-16 h-16 object-contain"
+              />
             </div>
             <h1 className="text-gray-900 text-3xl font-bold leading-tight text-center">
-              Welcome Back to SkinAid
+              Welcome Back to SkinnAid
             </h1>
           </div>
           <div className="space-y-4">
@@ -94,7 +98,7 @@ export default function LoginPage() {
               <img
                 alt="Google icon"
                 className="w-6 h-6 mr-3"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdOv6ZTEU5RGXQAtJwbIkJhQ1-_cWVCFyhbh1-LgcSPNDsQGXg6x7gxmjG08mzeZZkIN85SlDVjy_cxDxCNC4Z7ikD9meA6y9wLCXKLSSNIYjbQ8ifOboGT9kGb76TR4RsMrzhhz4YkfUS8kp6pw_UVzU5gFgAoRyTlj5gBc6DAxfo2dBkAMno22QVOmgHm3Y9i4KoxI-ONFq6A8W8B8R7U_mMdT76iqqrlzWhihaOrUjeWxLSU2PChcbQEmK8HK0eufRIl8vKvw"
+                src="https://developers.google.com/identity/images/g-logo.png"
               />
               <span className="font-medium">Continue with Google</span>
             </button>

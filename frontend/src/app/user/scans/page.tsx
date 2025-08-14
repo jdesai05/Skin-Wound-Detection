@@ -270,8 +270,9 @@ export default function ScansPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-white">
-      <header className="fixed top-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+    <div className="flex flex-col min-h-screen bg-white">
+      {/* Fixed Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="flex items-center p-4 justify-between">
           <button 
             onClick={() => router.back()}
@@ -286,13 +287,15 @@ export default function ScansPage() {
         </div>
       </header>
 
-      <main className="pt-20">
-        <p className="text-gray-600 text-base font-normal leading-normal pb-3 pt-1 px-6 text-center">
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col pt-20 pb-24">
+        <p className="text-gray-600 text-base font-normal leading-normal pb-3 pt-1 px-6 text-center flex-shrink-0">
           Ensure good lighting. Avoid blur. Center the skin area.
         </p>
         
-        <div className="p-4">
-          <div className="relative flex items-center justify-center bg-gray-200 bg-cover bg-center aspect-[3/4] rounded-2xl overflow-hidden min-h-[600px]">
+        {/* Camera/Image Container */}
+        <div className="flex-1 p-4 flex items-center justify-center">
+          <div className="relative w-full max-w-md bg-gray-200 bg-cover bg-center aspect-[3/4] rounded-2xl overflow-hidden">
             {isCamera ? (
               <>
                 <video
@@ -310,10 +313,10 @@ export default function ScansPage() {
                   onWaiting={() => console.log('📹 Video waiting')}
                 />
                 
-                {/* Larger targeting guide */}
+                {/* Targeting guide - adjusted for better mobile view */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-80 h-80 border-2 border-dashed border-white/70 rounded-full flex items-center justify-center">
-                    <div className="w-64 h-64 border border-white/50 rounded-full"></div>
+                  <div className="w-60 h-60 sm:w-80 sm:h-80 border-2 border-dashed border-white/70 rounded-full flex items-center justify-center">
+                    <div className="w-48 h-48 sm:w-64 sm:h-64 border border-white/50 rounded-full"></div>
                   </div>
                 </div>
                 
@@ -322,9 +325,9 @@ export default function ScansPage() {
                   {/* Flash Control */}
                   <button
                     onClick={toggleFlash}
-                    className={`p-3 rounded-full ${flashMode === 'on' ? 'bg-yellow-500' : 'bg-black/50'} text-white hover:bg-opacity-80 transition-colors`}
+                    className={`p-2 sm:p-3 rounded-full ${flashMode === 'on' ? 'bg-yellow-500' : 'bg-black/50'} text-white hover:bg-opacity-80 transition-colors`}
                   >
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
                     </svg>
                   </button>
@@ -332,9 +335,9 @@ export default function ScansPage() {
                   {/* Close Camera */}
                   <button
                     onClick={closeCamera}
-                    className="p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
                   >
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                     </svg>
                   </button>
@@ -342,12 +345,12 @@ export default function ScansPage() {
                 
                 {/* Focus Control */}
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2 sm:gap-3">
                     <button
                       onClick={handleAutoFocus}
-                      className="p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                      className="p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
                     >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
                         <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
                       </svg>
@@ -355,9 +358,9 @@ export default function ScansPage() {
                     
                     <button
                       onClick={toggleFocusMode}
-                      className={`p-3 rounded-full ${focusMode === 'manual' ? 'bg-blue-500' : 'bg-black/50'} text-white hover:bg-opacity-80 transition-colors`}
+                      className={`p-2 sm:p-3 rounded-full ${focusMode === 'manual' ? 'bg-blue-500' : 'bg-black/50'} text-white hover:bg-opacity-80 transition-colors`}
                     >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
                     </button>
@@ -365,21 +368,21 @@ export default function ScansPage() {
                 </div>
                 
                 {/* Bottom Controls */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-center items-center">
+                <div className="absolute bottom-4 left-4 right-4 flex justify-center items-center gap-4">
                   {/* Capture Button */}
                   <button
                     onClick={captureImage}
-                    className="w-20 h-20 bg-white rounded-full border-4 border-gray-300 flex items-center justify-center hover:scale-105 transition-transform shadow-lg mr-4"
+                    className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full border-4 border-gray-300 flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
                   >
-                    <div className="w-16 h-16 bg-white rounded-full border-2 border-gray-400"></div>
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full border-2 border-gray-400"></div>
                   </button>
                   
                   {/* Timer Button */}
                   <button
                     onClick={toggleTimer}
-                    className="p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    className="p-2 sm:p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
                   >
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
                     </svg>
                   </button>
@@ -388,7 +391,7 @@ export default function ScansPage() {
                 {/* Timer Countdown */}
                 {timerActive && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                    <div className="text-white text-8xl font-bold">
+                    <div className="text-white text-6xl sm:text-8xl font-bold">
                       {timerCount}
                     </div>
                   </div>
@@ -407,13 +410,13 @@ export default function ScansPage() {
                 <div className="absolute top-4 right-4 flex gap-2">
                   <button
                     onClick={retakePhoto}
-                    className="bg-black/50 text-white px-4 py-2 rounded-full text-sm hover:bg-black/70 transition-colors"
+                    className="bg-black/50 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm hover:bg-black/70 transition-colors"
                   >
                     Retake
                   </button>
                   <button
                     onClick={confirmPhoto}
-                    className="bg-green-500 text-white px-4 py-2 rounded-full text-sm hover:bg-green-600 transition-colors"
+                    className="bg-green-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full text-sm hover:bg-green-600 transition-colors"
                   >
                     Confirm
                   </button>
@@ -423,10 +426,10 @@ export default function ScansPage() {
               <>
                 {/* Default View */}
                 <div className="absolute inset-0 bg-gray-900/10 flex items-center justify-center">
-                  <div className="w-80 h-80 border-2 border-dashed border-gray-400 rounded-full"></div>
+                  <div className="w-60 h-60 sm:w-80 sm:h-80 border-2 border-dashed border-gray-400 rounded-full"></div>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <svg className="text-gray-400" fill="currentColor" height="100px" viewBox="0 0 256 256" width="100px" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="text-gray-400" fill="currentColor" height="80px" width="80px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                     <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"></path>
                   </svg>
                 </div>
@@ -446,60 +449,60 @@ export default function ScansPage() {
           onChange={handleGalleryUpload}
           className="hidden"
         />
-
-        {/* Bottom Controls */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-sm border-t border-gray-200">
-          {!isCamera && !capturedImage && (
-            <div className="flex gap-4 mb-4">
-              <button 
-                onClick={() => fileInputRef.current?.click()}
-                className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-gray-200 text-gray-800 text-base font-bold leading-normal tracking-[-0.015em] hover:bg-gray-300 transition-colors"
-              >
-                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31L188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-48a8,8,0,0,1-8,8H96a8,8,0,0,1-5.66-13.66l48-48a8,8,0,0,1,11.32,11.32L102.63,160H160A8,8,0,0,1,168,168Z"></path>
-                </svg>
-                <span className="truncate">Gallery</span>
-              </button>
-              <button 
-                onClick={startCamera}
-                className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-gray-200 text-gray-800 text-base font-bold leading-normal tracking-[-0.015em] hover:bg-gray-300 transition-colors"
-              >
-                <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M208,56H180.28L166.65,35.56A16,16,0,0,0,152.28,28H103.72a16,16,0,0,0-14.37,7.56L75.72,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm-80,112a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z"></path>
-                </svg>
-                <span className="truncate">Camera</span>
-              </button>
-            </div>
-          )}
-          
-          {isCamera && (
-            <div className="flex gap-4 mb-4">
-              <button 
-                onClick={stopCamera}
-                className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-red-500 text-white text-base font-bold leading-normal hover:bg-red-600 transition-colors"
-              >
-                <span className="truncate">Cancel</span>
-              </button>
-            </div>
-          )}
-
-          {capturedImage && (
-            <button 
-              onClick={analyzeImage}
-              disabled={isAnalyzing}
-              className={`flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 w-full text-white text-lg font-bold leading-normal tracking-[-0.015em] transition-colors shadow-lg ${
-                isAnalyzing
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-[#1993e5] hover:bg-blue-600 shadow-blue-500/30'
-              }`}
-            >
-              <span className="truncate">
-                {isAnalyzing ? 'Analyzing...' : 'Analyze Now'}
-              </span>
-            </button>
-          )}
-        </div>
       </main>
+
+      {/* Fixed Bottom Controls */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-white/95 backdrop-blur-sm border-t border-gray-200 safe-area-pb">
+        {!isCamera && !capturedImage && (
+          <div className="flex gap-4">
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-gray-200 text-gray-800 text-base font-bold leading-normal tracking-[-0.015em] hover:bg-gray-300 transition-colors"
+            >
+              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+                <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31L188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-48a8,8,0,0,1-8,8H96a8,8,0,0,1-5.66-13.66l48-48a8,8,0,0,1,11.32,11.32L102.63,160H160A8,8,0,0,1,168,168Z"></path>
+              </svg>
+              <span className="truncate">Gallery</span>
+            </button>
+            <button 
+              onClick={startCamera}
+              className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-gray-200 text-gray-800 text-base font-bold leading-normal tracking-[-0.015em] hover:bg-gray-300 transition-colors"
+            >
+              <svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+                <path d="M208,56H180.28L166.65,35.56A16,16,0,0,0,152.28,28H103.72a16,16,0,0,0-14.37,7.56L75.72,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm-80,112a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z"></path>
+              </svg>
+              <span className="truncate">Camera</span>
+            </button>
+          </div>
+        )}
+        
+        {isCamera && (
+          <div className="flex gap-4">
+            <button 
+              onClick={stopCamera}
+              className="flex flex-1 gap-2 items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-red-500 text-white text-base font-bold leading-normal hover:bg-red-600 transition-colors"
+            >
+              <span className="truncate">Cancel</span>
+            </button>
+          </div>
+        )}
+
+        {capturedImage && (
+          <button 
+            onClick={analyzeImage}
+            disabled={isAnalyzing}
+            className={`flex items-center justify-center overflow-hidden rounded-full h-14 px-5 w-full text-white text-lg font-bold leading-normal tracking-[-0.015em] transition-colors shadow-lg ${
+              isAnalyzing
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-[#1993e5] hover:bg-blue-600 shadow-blue-500/30'
+            }`}
+          >
+            <span className="truncate">
+              {isAnalyzing ? 'Analyzing...' : 'Analyze Now'}
+            </span>
+          </button>
+        )}
+      </div>
     </div>
   )
 }

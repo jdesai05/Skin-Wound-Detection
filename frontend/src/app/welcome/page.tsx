@@ -18,7 +18,7 @@ export default function WelcomePage() {
       isVisible ? 'opacity-100' : 'opacity-0'
     }`} style={{fontFamily: 'Lexend, "Noto Sans", sans-serif'}}>
       
-      {/* Clean Header */}
+      
       <header className={`p-6 text-center transition-all duration-700 delay-100 ${
         elementsVisible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
       }`}>
@@ -32,10 +32,10 @@ export default function WelcomePage() {
         </div>
       </header>
 
-      {/* Clean Main Content */}
+      
       <main className="flex-grow flex flex-col justify-center px-6 text-center">
         <div className="flex-grow flex items-center justify-center">
-          {/* Fixed image container */}
+          
           <div className={`transition-all duration-1000 delay-300 ${
             elementsVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-8 opacity-0 scale-95'
           }`}>
@@ -50,12 +50,12 @@ export default function WelcomePage() {
           </div>
         </div>
         
-        {/* Clean text content */}
+        
         <div className={`mt-8 mb-4 transition-all duration-1000 delay-500 ${
           elementsVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
         }`}>
           <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
-            Welcome to SkinAid
+            Welcome to SkinnAid
           </h2>
           <p className="text-slate-600 text-lg mt-2 leading-relaxed">
             Real-time AI Dermatology for Everyone.
@@ -63,9 +63,9 @@ export default function WelcomePage() {
         </div>
       </main>
 
-      {/* Clean Footer */}
+      
       <footer className="p-6">
-        {/* Clean Get Started Button */}
+        
         <div className={`transition-all duration-1000 delay-900 ${
           elementsVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
         }`}>
@@ -77,7 +77,7 @@ export default function WelcomePage() {
           </Link>
         </div>
         
-        {/* Clean Navigation */}
+        
         <nav className={`mt-6 flex justify-center gap-x-6 transition-all duration-1000 delay-1000 ${
           elementsVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
         }`}>

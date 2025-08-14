@@ -29,97 +29,119 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="bg-white text-[#111418] min-h-screen" style={{ fontFamily: 'Lexend, sans-serif' }}>
-      <div className="container mx-auto px-6 py-8 flex flex-col min-h-screen">
-        <header className="flex justify-center mb-8">
-          <div className="w-16 h-16 bg-[#1273f1] rounded-full flex items-center justify-center">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
-            </svg>
+    <div
+      className="relative flex size-full min-h-screen flex-col bg-[#F9FAFB] group/design-root overflow-x-hidden"
+      style={{ fontFamily: 'Lexend, "Noto Sans", sans-serif' }}
+    >
+      <div className="flex flex-col items-center justify-center flex-grow p-6">
+        <div className="w-full max-w-sm">
+          <div className="flex flex-col items-center mb-8">
+            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-blue-100 mb-4">
+              <img
+                src="/SkinnAidLogo.png"
+                alt="SkinnAid Logo"
+                className="w-16 h-16 object-contain"
+              />
+            </div>
+            <h1 className="text-gray-900 text-3xl font-bold leading-tight text-center">
+              Create Your SkinnAid Account
+            </h1>
           </div>
-        </header>
-        <main className="flex-grow">
-          <h1 className="text-3xl font-bold text-center mb-8">Create Your SkinAid Account</h1>
-          <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleSignUp(); }}>
-            <div>
+          <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSignUp(); }}>
+            <div className="relative">
+              <span className="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                person
+              </span>
               <label className="sr-only" htmlFor="full-name">Full Name</label>
-              <input 
+              <input
                 onChange={(e) => { setName(e.target.value) }}
-                className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
-                id="full-name" 
-                name="full-name" 
-                placeholder="Full Name" 
-                required 
+                className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
+                id="full-name"
+                name="full-name"
+                placeholder="Full Name"
+                required
                 type="text"
               />
             </div>
-            <div>
+            <div className="relative">
+              <span className="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                email
+              </span>
               <label className="sr-only" htmlFor="email">Email</label>
-              <input 
+              <input
                 onChange={(e) => { setEmail(e.target.value) }}
-                className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
-                id="email" 
-                name="email" 
-                placeholder="Email" 
-                required 
+                className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
                 type="email"
               />
             </div>
-            <div>
+            <div className="relative">
+              <span className="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                lock
+              </span>
               <label className="sr-only" htmlFor="password">Password</label>
-              <input 
+              <input
                 onChange={(e) => { setPassword(e.target.value) }}
-                className="w-full h-14 px-4 py-2 bg-[#f0f2f5] border-transparent rounded-xl focus:ring-2 focus:ring-[#1273f1] focus:border-transparent placeholder:text-[#60728a]" 
-                id="password" 
-                name="password" 
-                placeholder="Password" 
-                required 
+                className="form-input w-full rounded-full border border-[#d1d5db] bg-white h-14 pl-12 pr-4 text-gray-900 placeholder:text-[#6b7280] focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6]"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
                 type="password"
               />
             </div>
-            <div>
-              <button 
-                className="w-full h-14 flex items-center justify-center px-4 py-2 border border-transparent text-base font-bold rounded-full shadow-sm text-white bg-[#1273f1] hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1273f1]" 
+            <div className="mt-2">
+              <button
+                className="flex w-full cursor-pointer items-center justify-center rounded-full h-14 px-5 bg-[#3b82f6] text-white text-lg font-bold leading-normal tracking-wide hover:opacity-90 transition-opacity"
                 type="submit"
               >
-                Sign Up
+                <span className="truncate">Sign Up</span>
               </button>
             </div>
           </form>
-          <div className="mt-6 flex items-center">
+          <div className="relative flex py-5 items-center">
             <div className="flex-grow border-t border-gray-300"></div>
-            <span className="px-2 text-sm text-[#60728a]">or</span>
+            <span className="flex-shrink mx-4 text-[#6b7280] text-sm">OR</span>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
-          <div className="mt-6 space-y-4">
-            <button className="w-full h-14 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full shadow-sm text-base font-medium text-[#111418] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1273f1]">
-              <img 
-                alt="Google logo" 
-                className="h-6 w-6 mr-3" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbByxeZKhtQ9Znf-vrWP6zZMY4lBnd_sbfjZ5D7Ur2MXydUPghCgafTp15D1tIkaVlDuuA2LEhhCjDe2sXIMEMRXIvimemn3EegVdvzIeinGnolwcVlb-JFTBHXx_gR2rcxJ-iz1uzyUAh9wQJh5GzRBU69-idI74VU_7PuQMyiihJ5lmQFE1c-I-eBQwFuK0GMSBjOUQjkad98mi5cf63HSPSmVhxYwMBt_ErNq9jBOo8b569TOKTrbK3tiSD2eImN4fCI3UwRA"
+          <div className="flex flex-col space-y-4">
+            <button className="flex items-center justify-center w-full bg-white border border-gray-300 rounded-full h-14 px-5 text-gray-700 hover:bg-gray-50 transition-colors">
+              <img
+                alt="Google icon"
+                className="w-6 h-6 mr-3"
+                src="https://developers.google.com/identity/images/g-logo.png"
               />
-              Sign Up with Google
+              <span className="font-medium">Sign Up with Google</span>
             </button>
-            <button className="w-full h-14 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full shadow-sm text-base font-medium text-[#111418] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1273f1]">
-              <img 
-                alt="Apple logo" 
-                className="h-6 w-6 mr-3" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAVq6a5m1jjoDzEFbugprnYPciqLwQgr-zS4N2VluUqGNciBXsEh8P4pRLNGhiFZffEQeYVnBB_tIflnquL8AVTOXCEZsyAHb7QvIg1n_LjDj2qYpSbklL-po5LCf25cJ5_u__LYEmLn0ZUW5C2Eh94vusDd5WayT9qIbKn03qTy_IPbGQR5u8GzRBU69-idI74VU_7PuQMyiihJ5lmQFE1c-I-eBQwFuK0GMSBjOUQjkad98mi5cf63HSPSmVhxYwMBt_ErNq9jBOo8b569TOKTrbK3tiSD2eImN4fCI3UwRA"
-              />
-              Sign Up with Apple
+            <button className="flex items-center justify-center w-full bg-black border border-black rounded-full h-14 px-5 text-white hover:bg-gray-800 transition-colors">
+              <span className="material-icons mr-3">apple</span>
+              <span className="font-medium">Sign Up with Apple</span>
             </button>
           </div>
-          <div className="mt-6 text-center">
-            <p className="text-sm text-[#60728a]">
-              Already have an account? <Link className="font-medium text-[#1273f1] hover:text-opacity-80" href="/auth/login">Log In</Link>
+          <div className="text-center mt-6">
+            <p className="text-[#6b7280] text-sm">
+              Already have an account?{' '}
+              <Link className="font-bold text-[#3b82f6] hover:underline" href="/auth/login">
+                Log In
+              </Link>
             </p>
           </div>
-        </main>
-        <footer className="mt-auto pt-8 pb-4 text-center">
-          <p className="text-xs text-[#60728a]">
-            By signing up, you agree to our <Link className="underline" href="#">Terms & Conditions</Link> and <Link className="underline" href="#">Privacy Policy</Link>.
-          </p>
-        </footer>
+        </div>
+      </div>
+      <div className="p-4">
+        <p className="text-[#6b7280] text-xs font-normal leading-normal text-center">
+          By signing up, you agree to our{' '}
+          <Link className="underline" href="#">
+            Terms & Conditions
+          </Link>{' '}
+          and{' '}
+          <Link className="underline" href="#">
+            Privacy Policy
+          </Link>
+        </p>
       </div>
     </div>
   )
