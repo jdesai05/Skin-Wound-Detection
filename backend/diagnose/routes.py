@@ -84,8 +84,6 @@ def file_to_image_array(file: UploadFile) -> bytes:
         
         # Validate image
         image = Image.open(io.BytesIO(contents))
-        if image.format not in ["JPEG", "PNG"]:
-            raise HTTPException(status_code=400, detail="Only JPEG or PNG images are supported")
             
         # Convert to RGB and resize
         image = image.convert("RGB")
@@ -102,9 +100,6 @@ def file_to_image_array(file: UploadFile) -> bytes:
 @router.post('/diagnose', dependencies=[Depends(is_user)])
 async def diagnose_image(image: UploadFile = File(...)):
     try:
-        # Validate file extension
-        if not image.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-            raise HTTPException(status_code=400, detail="Invalid file extension. Use PNG or JPEG.")
         
         # Convert uploaded file to image bytes
         image_bytes = file_to_image_array(image)
