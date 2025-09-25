@@ -32,7 +32,7 @@ async def get_prediction(image_bytes: bytes) -> dict:
     try:
         # Create content for the Gemini model
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-2.5-flash-lite',
             contents=[
                 types.Part.from_bytes(
                     data=image_bytes,
